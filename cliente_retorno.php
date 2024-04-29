@@ -15,7 +15,7 @@
         <div class="text-center">
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-md-7 mt-4">
-                    <p class="text-lead text">Por favor insira os dados do cliente.</p>
+                    <p class="text-lead text">Cadastramento de clientes</p>
                 </div>
                 <div class="container">
                     <a class="brand">
@@ -51,7 +51,7 @@
     <!-- footer -->
     <div class="container">
         <div class="copyright text-center">
-            <p style="font-size: smaller;">Copyright &copy; TRADESIS Soluções em Sistemas 2022</p>
+            <p style="font-size: smaller;">-</p>
         </div>
     </div>
 
