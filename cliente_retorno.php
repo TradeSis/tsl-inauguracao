@@ -19,7 +19,7 @@
                 </div>
                 <div class="container">
                     <a class="brand">
-                        <img src="img/lebes.png" width="130px">
+                        <img src="img/lebes.png" width="100px">
                     </a>
                 </div>
             </div>
@@ -48,15 +48,6 @@
         </div>
     </div>
 
-    <!-- footer -->
-    <div class="container">
-        <div class="copyright text-center">
-            <p style="font-size: smaller;">-</p>
-        </div>
-    </div>
-
-
-    </div>
 
     <!-- LOCAL PARA COLOCAR OS JS -->
 
