@@ -1,0 +1,16 @@
+config.php
+.htaccess
+*.log
+*_log
+img
+img/*
+*.sh
+*.code-workspace
+work
+work/*
+relat
+relat/*
+.vscode
+.vscode/*
+tmp
+tmp/*
