@@ -39,7 +39,7 @@
                                 <?php } ?>
                             </div>
                             <div class="text-center mt-2">
-                                <a href="/" role="button" class="btn btn btn-primary">Voltar</a>
+                                <a href="/inauguracao/" role="button" class="btn btn btn-primary">Voltar</a>
                             </div>
                         </div>
                     </div>
