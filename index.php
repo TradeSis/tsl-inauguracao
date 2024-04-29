@@ -19,7 +19,7 @@
         </div>
         <div class="container">
           <a class="brand">
-            <img src="img/lebes.png" width="130px">  
+            <img src="img/lebes.png" width="100px">  
           </a>
         </div>
       </div>
@@ -33,9 +33,6 @@
             <form role="form" id="clienteForm" action="database/cliente.php?operacao=cadastrar" method="post">
               <div class="card-body">
                 <div class="col">
-                  <div class="alert alert-info text-center" role="alert" id="alerta" hidden>
-                    <span class="retorno">
-                  </div>
                   <label>Loja</label>
                   <input class="form-control ts-input my-1"  value="<?php echo isset($_COOKIE['codigoFilial']) ? $_COOKIE['codigoFilial'] : '' ?>"  
                     placeholder="Codigo Loja" type="text" id="codigoFilial" name="codigoFilial" required>
@@ -101,12 +98,7 @@
           },
           success: function (data) {
             if (data.status == 200) {
-              $('#alerta').removeAttr('hidden');
-              $('.retorno').text(data.retorno); 
-              $("button[type='submit']").prop('disabled', true);
-              $('#nomeCliente').prop('disabled', true);
-              $('#dataNascimento').prop('disabled', true);
-              $('#telefone').prop('disabled', true);
+              window.location.href = "cliente_retorno.php?retorno=" + data.retorno;
             } 
             if (data.status == 400) {
               $("button[type='submit']").prop('disabled', false);
