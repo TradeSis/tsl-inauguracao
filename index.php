@@ -97,15 +97,15 @@
             cpfCnpj: cpfCnpj
           },
           success: function (data) {
-            if (data.status == 200) {
-              window.location.href = "cliente_retorno.php?retorno=" + data.retorno;
-            } 
-            if (data.status == 400) {
+            if (data.status == 404) {
               $("button[type='submit']").prop('disabled', false);
               $('#alerta').attr('hidden', 'hidden');
               $('#nomeCliente').prop('disabled', false);
               $('#dataNascimento').prop('disabled', false);
               $('#telefone').prop('disabled', false);
+            } 
+            else {
+              window.location.href = "cliente_retorno.php?retorno=" + data.retorno;
             } 
           }
         });
