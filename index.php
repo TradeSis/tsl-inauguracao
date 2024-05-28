@@ -33,16 +33,16 @@
             <form role="form" id="clienteForm" action="database/cliente.php?operacao=cadastrar" method="post">
               <div class="card-body">
                 <div class="col">
-                  <label>Loja<span style="color:red;">*</span></label>
+                  <label><span style="color:red;">*</span>Loja</label>
                   <input class="form-control ts-input my-1"  value="<?php echo isset($_COOKIE['codigoFilial']) ? $_COOKIE['codigoFilial'] : '' ?>"  
                     placeholder="Codigo Loja" type="text" id="codigoFilial" name="codigoFilial" required>
-                  <label>CPF<span style="color:red;">*</span></label>
+                  <label><span style="color:red;">*</span>CPF</label>
                   <input class="form-control ts-input my-1" placeholder="CPF" type="text" id="cpfCnpj" name="cpfCnpj" required>
-                  <label>Nome Completo<span style="color:red;">*</span></label>
+                  <label><span style="color:red;">*</span>Nome Completo</label>
                   <input class="form-control ts-input my-1" placeholder="Nome Completo" type="text" id="nomeCliente" name="nomeCliente" disabled required>
-                  <label>Data de Nascimento<span style="color:red;">*</span></label>
+                  <label><span style="color:red;">*</span>Data de Nascimento</label>
                   <input class="form-control ts-input my-1" placeholder="dd/mm/aaaa" type="text" id="dataNascimento" name="dataNascimento" disabled required>
-                  <label>Telefone<span style="color:red;">*</span></label>
+                  <label><span style="color:red;">*</span>Telefone</label>
                   <input class="form-control ts-input my-1" placeholder="51999999999" type="tel" id="telefone" name="telefone" disabled required>
                 </div>
                 <div class="text-center mt-2">
