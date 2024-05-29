@@ -34,8 +34,8 @@
               <div class="card-body">
                 <div class="col">
                   <label><span style="color:red;">*</span> Loja</label>
-                  <input class="form-control ts-input my-1"  value="<?php echo isset($_COOKIE['codigoFilial']) ? $_COOKIE['codigoFilial'] : '' ?>"  
-                    placeholder="Codigo Loja" type="text" id="codigoFilial" name="codigoFilial" maxlength="4" required>
+                  <input class="form-control ts-input my-1" value="<?php echo isset($_COOKIE['codigoFilial']) ? str_pad($_COOKIE['codigoFilial'], 4, '0', STR_PAD_LEFT) : '' ?>" 
+                    placeholder="Codigo Loja" type="text" id="codigoFilial" name="codigoFilial" required>
                   <label><span style="color:red;">*</span> CPF</label>
                   <input class="form-control ts-input my-1" placeholder="CPF" type="text" id="cpfCnpj" name="cpfCnpj" required>
                   <label><span style="color:red;">*</span> Nome Completo</label>
@@ -118,8 +118,47 @@
       });
     });
 
-    document.getElementById('codigoFilial').addEventListener('input', function (e) {
-      this.value = this.value.replace(/\D/, '');  
+    document.getElementById('nomeCliente').addEventListener('input', function (e) {
+      this.value = this.value.replace(/\d/g, '');  
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+      var input = document.getElementById('codigoFilial');
+      var placeholder = '0000';
+
+      input.addEventListener('input', function(event) {
+        var value = this.value.replace(/\D/g, '');
+        var newValue = '';
+        var j = value.length - 1;
+        for (var i = placeholder.length - 1; i >= 0; i--) {
+          if (placeholder[i] === '0' && value[j]) {
+            newValue = value[j--] + newValue;
+          } else {
+            newValue = placeholder[i] + newValue;
+          }
+        }
+        this.value = newValue;
+      });
+
+      input.addEventListener('keydown', function(event) {
+        if (event.key === 'Backspace') {
+          var currentValue = this.value.replace(/\D/g, '');
+          if (currentValue.length > 0) {
+            currentValue = currentValue.slice(0, -1);
+            var newValue = '';
+            var j = currentValue.length - 1;
+            for (var i = placeholder.length - 1; i >= 0; i--) {
+              if (placeholder[i] === '0' && currentValue[j]) {
+                newValue = currentValue[j--] + newValue;
+              } else {
+                newValue = placeholder[i] + newValue;
+              }
+            }
+            this.value = newValue;
+          }
+          event.preventDefault();
+        }
+      });
     });
 
     document.addEventListener("DOMContentLoaded", function() {
