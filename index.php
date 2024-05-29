@@ -35,7 +35,7 @@
                 <div class="col">
                   <label><span style="color:red;">*</span> Loja</label>
                   <input class="form-control ts-input my-1"  value="<?php echo isset($_COOKIE['codigoFilial']) ? $_COOKIE['codigoFilial'] : '' ?>"  
-                    placeholder="Codigo Loja" type="text" id="codigoFilial" name="codigoFilial" required>
+                    placeholder="Codigo Loja" type="text" id="codigoFilial" name="codigoFilial" maxlength="4" required>
                   <label><span style="color:red;">*</span> CPF</label>
                   <input class="form-control ts-input my-1" placeholder="CPF" type="text" id="cpfCnpj" name="cpfCnpj" required>
                   <label><span style="color:red;">*</span> Nome Completo</label>
@@ -116,6 +116,10 @@
         telefone = telefone.substring(0, 11); 
         $(this).val(telefone); 
       });
+    });
+
+    document.getElementById('codigoFilial').addEventListener('input', function (e) {
+      this.value = this.value.replace(/\D/, '');  
     });
 
     document.addEventListener("DOMContentLoaded", function() {
