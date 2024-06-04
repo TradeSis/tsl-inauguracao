@@ -33,16 +33,16 @@
             <form role="form" id="clienteForm" action="database/cliente.php?operacao=cadastrar" method="post">
               <div class="card-body">
                 <div class="col">
-                  <label>Loja</label>
-                  <input class="form-control ts-input my-1"  value="<?php echo isset($_COOKIE['codigoFilial']) ? $_COOKIE['codigoFilial'] : '' ?>"  
+                  <label><span style="color:red;">*</span> Loja</label>
+                  <input class="form-control ts-input my-1" value="<?php echo isset($_COOKIE['codigoFilial']) ? str_pad($_COOKIE['codigoFilial'], 4, '0', STR_PAD_LEFT) : '' ?>" 
                     placeholder="Codigo Loja" type="text" id="codigoFilial" name="codigoFilial" required>
-                  <label>CPF</label>
+                  <label><span style="color:red;">*</span> CPF</label>
                   <input class="form-control ts-input my-1" placeholder="CPF" type="text" id="cpfCnpj" name="cpfCnpj" required>
-                  <label>Nome Completo</label>
+                  <label><span style="color:red;">*</span> Nome Completo</label>
                   <input class="form-control ts-input my-1" placeholder="Nome Completo" type="text" id="nomeCliente" name="nomeCliente" disabled required>
-                  <label>Data de Nascimento</label>
+                  <label><span style="color:red;">*</span> Data de Nascimento</label>
                   <input class="form-control ts-input my-1" placeholder="dd/mm/aaaa" type="text" id="dataNascimento" name="dataNascimento" disabled required>
-                  <label>Telefone</label>
+                  <label><span style="color:red;">*</span> Telefone</label>
                   <input class="form-control ts-input my-1" placeholder="51999999999" type="tel" id="telefone" name="telefone" disabled required>
                 </div>
                 <div class="text-center mt-2">
@@ -97,15 +97,15 @@
             cpfCnpj: cpfCnpj
           },
           success: function (data) {
-            if (data.status == 200) {
-              window.location.href = "cliente_retorno.php?retorno=" + data.retorno;
-            } 
-            if (data.status == 400) {
+            if (data.status == 404) {
               $("button[type='submit']").prop('disabled', false);
               $('#alerta').attr('hidden', 'hidden');
               $('#nomeCliente').prop('disabled', false);
               $('#dataNascimento').prop('disabled', false);
               $('#telefone').prop('disabled', false);
+            } 
+            else {
+              window.location.href = "cliente_retorno.php?retorno=" + data.retorno;
             } 
           }
         });
@@ -115,6 +115,49 @@
         var telefone = $(this).val().replace(/\D/g, ''); 
         telefone = telefone.substring(0, 11); 
         $(this).val(telefone); 
+      });
+    });
+
+    document.getElementById('nomeCliente').addEventListener('input', function (e) {
+      this.value = this.value.replace(/\d/g, '');  
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+      var input = document.getElementById('codigoFilial');
+      var placeholder = '0000';
+
+      input.addEventListener('input', function(event) {
+        var value = this.value.replace(/\D/g, '');
+        var newValue = '';
+        var j = value.length - 1;
+        for (var i = placeholder.length - 1; i >= 0; i--) {
+          if (placeholder[i] === '0' && value[j]) {
+            newValue = value[j--] + newValue;
+          } else {
+            newValue = placeholder[i] + newValue;
+          }
+        }
+        this.value = newValue;
+      });
+
+      input.addEventListener('keydown', function(event) {
+        if (event.key === 'Backspace') {
+          var currentValue = this.value.replace(/\D/g, '');
+          if (currentValue.length > 0) {
+            currentValue = currentValue.slice(0, -1);
+            var newValue = '';
+            var j = currentValue.length - 1;
+            for (var i = placeholder.length - 1; i >= 0; i--) {
+              if (placeholder[i] === '0' && currentValue[j]) {
+                newValue = currentValue[j--] + newValue;
+              } else {
+                newValue = placeholder[i] + newValue;
+              }
+            }
+            this.value = newValue;
+          }
+          event.preventDefault();
+        }
       });
     });
 
