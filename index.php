@@ -4,7 +4,7 @@
 <head>
 
   <?php include_once "vendor/head_css.php"; ?>
-
+  <title>Inauguração</title>
 </head>
 
 <body>
